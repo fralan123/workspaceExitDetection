@@ -1,0 +1,39 @@
+JFDML JFormDesigner: "5.1.0.0.51" Java: "1.7.0_15" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:69:p, comp lbl_header:::p:187:p}, seq l {space :::p, par l:::p {comp btn_nuevo:::::x, comp btn_inicio:::::x}, space u:::p, par l:::p {comp btn_terminar:::::x, comp btn_termino:::::x}}}, space ::6:x}}"
+			"$verticalGroup": "par l {seq l {comp lbl_header:::p::p, space u:::p, par b {comp btn_nuevo::b:p::p, comp btn_terminar::b:p::p}, space :::p, par b {comp btn_inicio::b:p::p, comp btn_termino::b:p::p}, space ::14:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbl_header"
+				"text": "Bitacora de experimentos"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btn_nuevo"
+				"text": "Nuevo Experimento"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_nuevoActionPerformed", true ) )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_nuevoActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btn_terminar"
+				"text": "Terminar Experimento"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_terminarActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btn_inicio"
+				"text": "Hora Inicio"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btn_termino"
+				"text": "Hora Termino"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 315, 90 )
+		} )
+	}
+}
