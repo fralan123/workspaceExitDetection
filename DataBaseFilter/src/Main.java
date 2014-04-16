@@ -21,7 +21,7 @@ public class Main {
         ResultSet rs = null;
 	    
         try {
-    		String bd = "xdtec"; 
+    		String bd = "ExitDetection"; 
             String dbURL = "jdbc:mysql://localhost/"+bd;
             String username = "root";
             String password = "karmic";
@@ -31,8 +31,11 @@ public class Main {
                 DriverManager.getConnection(dbURL, username, password);
 
             stmt = conn.createStatement();
+            
+            String now1 = "14:39:00";
+            String now2 = "15:08:00";
 
-            if (stmt.execute("select * from samples")) {
+            if (stmt.execute("select * from samples where today=\"2012-04-16\" and now > \""+now1+"\" and now < \""+now2+"\" order by now asc")) {
                 rs = stmt.getResultSet();
             } else {
                 System.err.println("select failed");

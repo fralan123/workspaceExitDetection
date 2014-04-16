@@ -93,11 +93,13 @@ public class TesterV2 implements MessageListener {
                             now2 = Calendar.getInstance();
                             PCTime = now2.get(Calendar.HOUR_OF_DAY) + ":" + now2.get(Calendar.MINUTE) + ":" + now2.get(Calendar.SECOND);
                             MagTA = MagTB;
-                            ps.setString(4,PCTime);
+                            ps.setString(4,time);
+                            //ps.setString(4,PCTime);
                         }else{
                             now2.add(Calendar.SECOND, 1);
                             PCTime = now2.get(Calendar.HOUR_OF_DAY) + ":" + now2.get(Calendar.MINUTE) + ":" + now2.get(Calendar.SECOND);
-                            ps.setString(4,PCTime);
+                            ps.setString(4,time);
+                            //ps.setString(4,PCTime);
                             //System.out.println(PCTime);
                             MagTA = (int) localTime;
 
@@ -109,7 +111,6 @@ public class TesterV2 implements MessageListener {
                         ps.executeUpdate();
                         ps.close();                        
                         break;
-
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
