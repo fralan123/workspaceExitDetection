@@ -11,12 +11,15 @@
 <coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="132" y="26"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="54" y="26"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="142" y="26"/>
 <coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="54" y="26"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="80" y="26"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="114" y="26"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="212" y="26"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -25,14 +28,33 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+</presentation>
 </folder>
 </info>
 </editorArea>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseFilter.java" partName="DatabaseFilter.java" path="/home/zero/workspaceExitDetection/AccessExitDetection_v2.0/src/tools/DatabaseFilter.java" title="DatabaseFilter.java" tooltip="AccessExitDetection_v2.0/src/tools/DatabaseFilter.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AccessExitDetection_v2.0/src/tools/DatabaseFilter.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="733" selectionTopPixel="251"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="out.txt" partName="out.txt" path="/home/zero/workspaceExitDetection/AccessExitDetection_v2.0/out.txt" title="out.txt" tooltip="AccessExitDetection_v2.0/out.txt" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AccessExitDetection_v2.0/out.txt"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="24844" selectionTopPixel="14087"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" partName="Main.java" path="/home/zero/workspaceExitDetection/AccessExitDetection_v2.0/src/Main.java" title="Main.java" tooltip="AccessExitDetection_v2.0/src/Main.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AccessExitDetection_v2.0/src/Main.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2877" selectionTopPixel="3647"/>
+</editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
 <viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
 </view>
 <view id="org.eclipse.ui.views.TaskList" partName="Tasks">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.completionField" categoryGroup="none" markerContentGenerator="org.eclipse.ui.ide.tasksGenerator" partName="Tasks">
@@ -50,7 +72,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.ui.navigator.ProjectExplorer" activePerspective="org.eclipse.ui.resourcePerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.ui.resourcePerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -84,6 +106,7 @@
 <view id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -108,11 +131,13 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.25940594" ratioLeft="262" ratioRight="748" relationship="2" relative="topLeft"/>
 <info folder="true" part="bottomRight" ratio="0.65891474" ratioLeft="425" ratioRight="220" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.TaskList" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.team.ui.GenericHistoryView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
@@ -130,7 +155,169 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/AccessExitDetection/src/Files/ExperimentosTodos.txt"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DataBaseFilter/src/Main.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AccessExitDetection_v2.0/src/tools/DatabaseFilter.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/AccessExitDetection_v2.0/out.txt"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AccessExitDetection_v2.0/src/Main.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/AccessExitDetection_v2.0/src/060313/01_entrenamiento_nopyro.txt"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/AccessExitDetection_v2.0/src/060313/Files/FileI0.txt"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/AccessExitDetection_v2.0/src/060313/Files/FileI1.txt"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/AccessExitDetection_v2.0/src/060313/Files/FileI2.txt"/>
+</editors>
+<item historyLabel="ExperimentosTodos.txt" index="0">
+<position info="not_deleted" x="212" y="0"/>
+</item>
+<item historyLabel="Main.java" index="1">
+<position info="not_deleted" x="410" y="0"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="346" y="0"/>
+</item>
+<item historyLabel="Main.java" index="1">
+<position info="not_deleted" x="410" y="0"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="1881" y="0"/>
+</item>
+<item historyLabel="Main.java" index="1">
+<position info="not_deleted" x="1197" y="0"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="1881" y="0"/>
+</item>
+<item historyLabel="Main.java" index="1">
+<position info="not_deleted" x="1197" y="0"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="659" y="1"/>
+</item>
+<item historyLabel="Main.java" index="1">
+<position info="not_deleted" x="1197" y="0"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="659" y="1"/>
+</item>
+<item historyLabel="Main.java" index="1">
+<position info="not_deleted" x="823" y="223"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="659" y="1"/>
+</item>
+<item historyLabel="Main.java" index="1">
+<position info="not_deleted" x="823" y="223"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="672" y="0"/>
+</item>
+<item historyLabel="Main.java" index="1">
+<position info="not_deleted" x="823" y="223"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="672" y="0"/>
+</item>
+<item historyLabel="Main.java" index="1">
+<position info="not_deleted" x="823" y="223"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="672" y="0"/>
+</item>
+<item historyLabel="Main.java" index="1">
+<position info="not_deleted" x="823" y="223"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="672" y="0"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="1070" y="0"/>
+</item>
+<item historyLabel="out.txt" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="3657" y="0"/>
+</item>
+<item historyLabel="out.txt" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="2401" y="0"/>
+</item>
+<item historyLabel="out.txt" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="out.txt" index="3">
+<position info="not_deleted" x="231" y="0"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="2437" y="0"/>
+</item>
+<item historyLabel="out.txt" index="3">
+<position info="not_deleted" x="231" y="0"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="2226" y="0"/>
+</item>
+<item historyLabel="out.txt" index="3">
+<position info="not_deleted" x="231" y="0"/>
+</item>
+<item historyLabel="Main.java" index="4">
+<position info="not_deleted" x="8" y="0"/>
+</item>
+<item historyLabel="01_entrenamiento_nopyro.txt" index="5">
+<position/>
+</item>
+<item historyLabel="Main.java" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Main.java" index="1">
+<position info="not_deleted" x="649" y="0"/>
+</item>
+<item historyLabel="Main.java" index="4">
+<position info="not_deleted" x="2674" y="0"/>
+</item>
+<item historyLabel="01_entrenamiento_nopyro.txt" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Main.java" index="4">
+<position info="not_deleted" x="2674" y="0"/>
+</item>
+<item historyLabel="FileI0.txt" index="6">
+<position info="not_deleted" x="255" y="0"/>
+</item>
+<item historyLabel="Main.java" index="4">
+<position info="not_deleted" x="2674" y="0"/>
+</item>
+<item historyLabel="FileI1.txt" index="7">
+<position info="not_deleted" x="300" y="0"/>
+</item>
+<item historyLabel="Main.java" index="4">
+<position info="not_deleted" x="2674" y="0"/>
+</item>
+<item historyLabel="FileI2.txt" index="8">
+<position info="not_deleted" x="146" y="0"/>
+</item>
+<item historyLabel="Main.java" index="4">
+<position info="not_deleted" x="2877" y="0"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="1070" y="0"/>
+</item>
+<item historyLabel="out.txt" index="3">
+<position info="not_deleted" x="231" y="0"/>
+</item>
+<item historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="1115" y="0"/>
+</item>
+<item historyLabel="out.txt" index="3">
+<position info="not_deleted" x="24844" y="0"/>
+</item>
+<item active="true" historyLabel="DatabaseFilter.java" index="2">
+<position info="not_deleted" x="1115" y="0"/>
+</item>
+</navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -146,5 +333,51 @@
 </trimArea>
 </trimLayout>
 </window>
-<mruList/>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="FileI2.txt" tooltip="AccessExitDetection_v2.0/src/060313/Files/FileI2.txt">
+<persistable path="/AccessExitDetection_v2.0/src/060313/Files/FileI2.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="FileI1.txt" tooltip="AccessExitDetection_v2.0/src/060313/Files/FileI1.txt">
+<persistable path="/AccessExitDetection_v2.0/src/060313/Files/FileI1.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="FileI0.txt" tooltip="AccessExitDetection_v2.0/src/060313/Files/FileI0.txt">
+<persistable path="/AccessExitDetection_v2.0/src/060313/Files/FileI0.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="01_entrenamiento_nopyro.txt" tooltip="AccessExitDetection_v2.0/src/060313/01_entrenamiento_nopyro.txt">
+<persistable path="/AccessExitDetection_v2.0/src/060313/01_entrenamiento_nopyro.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="AccessExitDetection_v2.0/src/Main.java">
+<persistable path="/AccessExitDetection_v2.0/src/Main.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="out.txt" tooltip="AccessExitDetection_v2.0/out.txt">
+<persistable path="/AccessExitDetection_v2.0/out.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseFilter.java" tooltip="AccessExitDetection_v2.0/src/tools/DatabaseFilter.java">
+<persistable path="/AccessExitDetection_v2.0/src/tools/DatabaseFilter.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="DataBaseFilter/src/Main.java">
+<persistable path="/DataBaseFilter/src/Main.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="ExperimentosTodos.txt" tooltip="AccessExitDetection/src/Files/ExperimentosTodos.txt">
+<persistable path="/AccessExitDetection/src/Files/ExperimentosTodos.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="01_entrenamiento_nopyro.txt" tooltip="AccessExitDetection_v1.5/src/060313/01_entrenamiento_nopyro.txt">
+<persistable path="/AccessExitDetection_v1.5/src/060313/01_entrenamiento_nopyro.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="Experimentos_0_4.txt" tooltip="AccessExitDetection_v1.5/src/FilesSplit/Experimentos_0_4.txt">
+<persistable path="/AccessExitDetection_v1.5/src/FilesSplit/Experimentos_0_4.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="FileI0.txt" tooltip="AccessExitDetection_v1.5/src/FilesSplit/FileI0.txt">
+<persistable path="/AccessExitDetection_v1.5/src/FilesSplit/FileI0.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseFilter.java" tooltip="AccessExitDetection_v1.5/src/tools/DatabaseFilter.java">
+<persistable path="/AccessExitDetection_v1.5/src/tools/DatabaseFilter.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="FileI0.txt" tooltip="AccessExitDetection_v1.5/src/Files/FileI0.txt">
+<persistable path="/AccessExitDetection_v1.5/src/Files/FileI0.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="AccessExitDetection_v1.5/src/Main.java">
+<persistable path="/AccessExitDetection_v1.5/src/Main.java"/>
+</file>
+</mruList>
 </workbench>
