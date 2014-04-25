@@ -187,8 +187,7 @@ public class Main {
 			{
 				cs.changeState(Event.OUTPUT);
 				e = "Output";			
-			}
-			
+			}			
 		}
 		if(eventType==I)
 		{
@@ -227,7 +226,7 @@ public class Main {
 		try {
 			// Open the file that is the first command line parameter
 			FileInputStream fstream = new FileInputStream(
-					"src/060313/05_entraAcompanadoSaleAcompanado_nopyro.txt");
+					"src/060313/02_entraSoloSaleSolo_nopyro.txt");
 			// Get the object of DataInputStream
 			in = new DataInputStream(fstream);
 			bufferedReader = new BufferedReader(new InputStreamReader(in));

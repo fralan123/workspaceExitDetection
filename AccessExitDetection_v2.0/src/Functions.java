@@ -1,29 +1,32 @@
 
 public class Functions 
 {
-
-	final int pyrometer= 702; 
+	
+	final int pyrometerOutside= 701;
+	final int pyrometerInside= 702; 
 	final int magnetometer = 703;
 	
 	public int validateEventType2(Node first, Node last)
 	{
-		if(first.getNodeID()==pyrometer)
+		if(first.getNodeID()==pyrometerInside)
 			return 1; //Exit event
-		else if(first.getNodeID()==magnetometer)
+		else if(first.getNodeID()==pyrometerOutside)
 			return 2; //Access event
 		else
 			return 0; //undefinied event
 	}
 	public int validateEventType(Node first, Node last)
 	{
-		if(first.getNodeID()==pyrometer&&last.getNodeID()==magnetometer)
+		if(first.getNodeID()==pyrometerInside&&last.getNodeID()==pyrometerOutside)
 			return 1; //Exit event
-		else if(first.getNodeID()==magnetometer&&last.getNodeID()==pyrometer)
+		else if(first.getNodeID()==pyrometerOutside&&last.getNodeID()==pyrometerInside)
 			return 2; //Access event
-		else if(first.getNodeID()==pyrometer&&last.getNodeID()==pyrometer)
+		else if(first.getNodeID()==pyrometerInside&&last.getNodeID()==pyrometerInside)
 			return 3; //Pyrometer (Activity inside)
+		else if(first.getNodeID()==pyrometerOutside&&last.getNodeID()==pyrometerOutside)
+			return 4; //Pyrometer (Activity outside)
 		else if(first.getNodeID()==magnetometer&&last.getNodeID()==magnetometer)
-			return 4; //Magnetometer (Door open)
+			return 5; //Magnetometer (Door open)
 		else
 			return 0; //undefinied event
 	}
