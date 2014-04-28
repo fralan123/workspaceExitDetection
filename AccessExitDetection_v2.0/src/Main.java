@@ -54,6 +54,8 @@ public class Main {
 	
 	int counterInput=0;
 	int counterOutput=0;
+	//Variable para saber si existe magnetómetro
+	boolean Magnetometer = false;
 
 	ChangeState cs;
 	public void initializeVariables()
@@ -118,6 +120,9 @@ public class Main {
 				{
 					m++;
 					W.add(nextNode());	
+					//Verifica que exista magnetómetro
+					if(W.lastElement().getNodeID()==0)
+						Magnetometer=true;
 					if(W.lastElement()==null)
 						break;
 					if(W.lastElement().getNodeID()==0)
