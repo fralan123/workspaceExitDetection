@@ -32,10 +32,10 @@ public class Main {
 
             stmt = conn.createStatement();
             
-            String now1 = "14:39:00";
-            String now2 = "15:08:00";
+            String now1 = "12:15:00";
+            String now2 = "12:47:00";
 
-            if (stmt.execute("select * from samples where today=\"2012-04-16\" and now > \""+now1+"\" and now < \""+now2+"\" order by now asc")) {
+            if (stmt.execute("select * from samples where today=\"2012-04-25\" and now > \""+now1+"\" and now < \""+now2+"\" order by now asc")) {
                 rs = stmt.getResultSet();
             } else {
                 System.err.println("select failed");

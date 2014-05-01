@@ -37,9 +37,9 @@ public class DatabaseFilter {
 
 	            stmt = conn.createStatement();
 
-	            String now1 = "13:43:00";
-	            String now2 = "15:08:00";
-	            String today = "2012-04-16";
+	            String now1 = "12:10:00";
+	            String now2 = "12:15:00";
+	            String today = "2012-04-25";
 
 	            if (stmt.execute("select * from samples where today=\""+today+"\" and now > \""+now1+"\" and now < \""+now2+"\" order by now")) {	            
 	                rs = stmt.getResultSet();

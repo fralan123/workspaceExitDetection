@@ -22,6 +22,8 @@ public class Functions
 	{
 		double value = 0;
 		value = 1 - (Math.abs(sampleCount-mean))/(lambda*standardDeviation); //formula
+		System.out.println("SampleCount= "+sampleCount+" Mean= "+mean+" lambda="+lambda+" standardDeviation="+standardDeviation);
+		System.out.println("Value= "+value);
 		return value;
 	}
 
