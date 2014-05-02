@@ -19,14 +19,10 @@ import javax.swing.event.ChangeListener;
  */
 public class StateMachine {
 	static List<ChangeListener>					stateChangeListenerList	= new ArrayList<ChangeListener>(3);
-
 	static Logger								log;
-
 	private static volatile State				currentState;
-
 	private static Map<State, EnumSet<State>>	stateMap;
-
-	public static final ActionListener actionListener;
+	public static final ActionListener			actionListener;
 
 	/**
 	 * Application events.
@@ -35,6 +31,7 @@ public class StateMachine {
 		INPUT,
 		OUTPUT,
 		PYROMETER,
+		INACTIVITY,
 	}
 	
 	/**
@@ -57,7 +54,7 @@ public class StateMachine {
 		
 		stateMap.put(State.E0, EnumSet.of(State.E1));
 		stateMap.put(State.E1, EnumSet.of(State.E2,State.E3));
-		stateMap.put(State.E2, EnumSet.of(State.E0,State.E3));
+		stateMap.put(State.E2, EnumSet.of(State.E0));
 		stateMap.put(State.E3, EnumSet.of(State.E2,State.E4));
 		stateMap.put(State.E4, EnumSet.of(State.E4));
 

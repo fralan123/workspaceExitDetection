@@ -238,7 +238,7 @@ public class Main {
 		{
 			if(function.evaluateAccessOrExit(b2+m2+l2, outputMean, lambda, outputStandarDeviation)>=0)
 			{
-				//cs.changeState(Event.OUTPUT);
+				cs.changeState(Event.OUTPUT);
 				e = "Output";			
 			}			
 		}
@@ -246,7 +246,7 @@ public class Main {
 		{
 			if(function.evaluateAccessOrExit(b2+m2+l2, inputMean, lambda, inputStandarDeviation)>=0)
 			{
-				//cs.changeState(Event.INPUT);
+				cs.changeState(Event.INPUT);
 				e = "Input";
 			}
 		}
