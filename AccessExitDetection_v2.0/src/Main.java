@@ -19,16 +19,16 @@ public class Main {
 		System.out.println("Lambda = "+lambda2);
 	}
 	Main()
-	{	
-		
-	}
+	{		
+	}	
 	SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss"); 	// For time
 	BufferedReader bufferedReader;
 	DataInputStream in;
 	Vector<Node> W = new Vector<Node>();
+	final static String PATH = "src/Files/";
+	final static String FILE = "02_EntraSoloSaleAcompanado.txt";
 	int b,m,l;
-	double T = 1000;			//Time in milliseconds
-	
+	double T = 2000;			//Time in milliseconds	
 	final static int O = 1;		//Output 	= 1
 	final static int I = 2;		//Input 	= 2
 	final static int PI = 3;	//Pyrometer Inside	= 3
@@ -66,6 +66,11 @@ public class Main {
 	
 	double l_thresholdOutput = pyrometerOutsideOutputMean+pyrometerOutsideOutputStandarDeviation;
 	double b_thresholdOutput = pyrometerInsideOutputMean+pyrometerInsideOutputStandarDeviation;
+	
+	final double intersectionInputMean=17;
+	final double intersectionInputStandarDeviation=1.8918106059;
+	final double intersectionOutputMean=17.95;
+	final double intersectionOutputStandarDeviation=1.6050905861;
 	
 	int counterInput=0;
 	int counterOutput=0;
@@ -124,6 +129,9 @@ public class Main {
 					if(W.lastElement().getNodeID()==0)
 						evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
 				}
+				//Si la diferencia es mayor a T, se evalua
+				if(getDifference(W.lastElement(),W.get(W.size()-2))>T)
+						evaluateInterrupted(nodeA, W.lastElement());
 				//Beginning of intersection
 				m=1;
 				W.add(nextNode());
@@ -155,14 +163,26 @@ public class Main {
 				}
 				else
 					l=1;
+				
+
+				//Si la diferencia es mayor a T, se evalua
+				if(getDifference(W.lastElement(),W.get(W.size()-2))>T)
+						evaluateInterrupted(nodeA, W.lastElement());
+				
 				//AQUI VA LA NUEVA CONDICION SI LA DIFERENCIA ES <= Q				
 				W.add(nextNode());
 				if(W.lastElement()==null)
 					break;
 				if(W.lastElement().getNodeID()==0)
 					evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-				//Verificar como adecuar el valor de umbral
-				while((getDifference(W.lastElement(),W.get(W.size()-2))<=T)&&(l<=l_thresholdInput))
+				//Se adecua el valor del umbral del final l_threshold
+				double l_threshold=0;
+				if(function.validateEventType(nodeA, nodeB)==O)				
+					l_threshold=l_thresholdOutput;				
+				else if(function.validateEventType(nodeA, nodeB)==I)				
+					l_threshold=l_thresholdInput;				
+				
+				while((getDifference(W.lastElement(),W.get(W.size()-2))<=T)&&(l<=l_threshold))
 				{
 					l++;
 					W.add(nextNode());
@@ -171,6 +191,10 @@ public class Main {
 					if(W.lastElement().getNodeID()==0)
 						evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
 				}
+
+				//Si la diferencia es mayor a T, se evalua
+				if(getDifference(W.lastElement(),W.get(W.size()-2))>T)
+						evaluateInterrupted(nodeA, W.lastElement());
 
 				//Keep the last node in nodeB
 				nodeB = W.lastElement();
@@ -187,7 +211,7 @@ public class Main {
 						b = (int) l_thresholdInput;
 				}
 				
-				String e = event(b,m,l,nodeA,nodeB); 
+				String e = event(b,m,l,nodeA,nodeB,false); 
 				//send_event(e);
 				System.out.println(e);
 				if(e=="Output")
@@ -201,7 +225,7 @@ public class Main {
 					break;
 				if(W.lastElement().getNodeID()==0)
 					evaluateInterrupted(nodeA, W.elementAt(W.size()-2));				
-			}
+			}//Termina primer while de condicion diff<=T
 			
 		}
 	}
@@ -218,7 +242,7 @@ public class Main {
 				b = (int) l_thresholdInput;
 		}
 		
-		String e = event(b,m,l,nodeA,nodeB); 
+		String e = event(b,m,l,nodeA,nodeB,true); 
 		//send_event(e);
 		System.out.println(e);
 		System.out.println("------------------------------------------------------------");
@@ -226,34 +250,52 @@ public class Main {
 			counterOutput++;
 		if(e=="Input")
 			counterInput++;
+		
+		cs.changeState(Event.RESTART);
 		algorithm();
 	}
 	
-	private String event(int b2, int m2, int l2, Node nodeA, Node nodeB) {
+	private String event(int b2, int m2, int l2, Node nodeA, Node nodeB, boolean inactivity) {
 		Functions function = new Functions();
 		String e = null;
 		int eventType = function.validateEventType(nodeA, nodeB);
 		
 		if(eventType==O)
 		{
+			//if(function.evaluateAccessOrExit(b2+m2+l2, outputMean, lambda, outputStandarDeviation, m2, intersectionOutputMean)>=0)
 			if(function.evaluateAccessOrExit(b2+m2+l2, outputMean, lambda, outputStandarDeviation)>=0)
 			{
+				if(inactivity)
+					cs.changeState(Event.INACTIVITY);
+				
 				cs.changeState(Event.OUTPUT);
+				
 				e = "Output";			
-			}			
+			}
+			else
+				e = "Invalid Output";
 		}
 		if(eventType==I)
 		{
+			//if(function.evaluateAccessOrExit(b2+m2+l2, inputMean, lambda, inputStandarDeviation, m2, intersectionInputMean)>=0)
 			if(function.evaluateAccessOrExit(b2+m2+l2, inputMean, lambda, inputStandarDeviation)>=0)
 			{
 				cs.changeState(Event.INPUT);
 				e = "Input";
 			}
+			else
+				e = "Invalid Input";
 		}
 		if(eventType==PI)
+		{
+			//cs.changeState(Event.PI);
 			e = "Pyrometer Inside";
+		}
 		if(eventType==PO)
+		{
+			//cs.changeState(Event.PO);
 			e = "Pyrometer Outside";
+		}
 		if(eventType==M)
 			e = "Magnetometer";
 				
@@ -280,7 +322,7 @@ public class Main {
 		try {
 			// Open the file that is the first command line parameter
 			FileInputStream fstream = new FileInputStream(
-					"src/Files/Test.txt");
+					PATH+FILE);
 			// Get the object of DataInputStream
 			in = new DataInputStream(fstream);
 			bufferedReader = new BufferedReader(new InputStreamReader(in));
@@ -335,7 +377,7 @@ public class Main {
 //			Main main = new Main((double)i/10);
 //			main.reading();	
 //		}
-		Main main = new Main(1);
+		Main main = new Main(2.6);
 		main.reading();	
 	}
 

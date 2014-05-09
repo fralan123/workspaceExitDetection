@@ -27,6 +27,10 @@ public class Functions
 			return 4; //Pyrometer (Activity outside)
 		else if(first.getNodeID()==magnetometer&&last.getNodeID()==magnetometer)
 			return 5; //Magnetometer (Door open)
+		else if(first.getNodeID()==pyrometerInside&&last.getNodeID()==0)
+			return 1; //Fuzzy Exit Event
+		else if(first.getNodeID()==pyrometerOutside&&last.getNodeID()==0)
+			return 2; //Fuzzy Access Event
 		else
 			return 0; //undefinied event
 	}
@@ -34,8 +38,16 @@ public class Functions
 	{
 		double value = 0;
 		value = 1 - (Math.abs(sampleCount-mean))/(lambda*standardDeviation); //formula
-		System.out.println("SampleCount= "+sampleCount+" Mean= "+mean+" lambda="+lambda+" standardDeviation="+standardDeviation);
-		System.out.println("Value= "+value);
+		//System.out.println("SampleCount= "+sampleCount+" Mean= "+mean+" lambda="+lambda+" standardDeviation="+standardDeviation);
+		//System.out.println("Value= "+value);
+		return value;
+	}
+	public double evaluateAccessOrExit(double sampleCount, double mean, double lambda, double standardDeviation, double intersection, double intersectionMean)
+	{
+		double value = 0;
+		value = 1 - (Math.abs(intersection-intersectionMean))/(lambda*standardDeviation); //formula
+		//System.out.println("SampleCount= "+sampleCount+" Mean= "+mean+" lambda="+lambda+" standardDeviation="+standardDeviation);
+		//System.out.println("Value= "+value);
 		return value;
 	}
 

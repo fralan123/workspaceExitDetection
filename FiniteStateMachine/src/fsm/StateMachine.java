@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -23,6 +21,7 @@ public class StateMachine {
 	private static volatile State				currentState;
 	private static Map<State, EnumSet<State>>	stateMap;
 	public static final ActionListener			actionListener;
+	public static boolean 						activity = false;
 
 	/**
 	 * Application events.
@@ -30,8 +29,10 @@ public class StateMachine {
 	public enum Event {		
 		INPUT,
 		OUTPUT,
-		PYROMETER,
+		PI,
+		PO,
 		INACTIVITY,
+		RESTART,
 	}
 	
 	/**
@@ -53,10 +54,10 @@ public class StateMachine {
 		stateMap = new HashMap<State, EnumSet<State>>();
 		
 		stateMap.put(State.E0, EnumSet.of(State.E1));
-		stateMap.put(State.E1, EnumSet.of(State.E2,State.E3));
+		stateMap.put(State.E1, EnumSet.of(State.E2,State.E3,State.E4));
 		stateMap.put(State.E2, EnumSet.of(State.E0));
 		stateMap.put(State.E3, EnumSet.of(State.E2,State.E4));
-		stateMap.put(State.E4, EnumSet.of(State.E4));
+		stateMap.put(State.E4, EnumSet.of(State.E0));
 
 		// set initial state
 		currentState = State.E0;
@@ -85,6 +86,7 @@ public class StateMachine {
 				switch (event) {
 						
 					case INPUT:
+						activity=true;
 						if(getCurrent()==State.E0)
 							setCurrent(State.E1);
 						else if(getCurrent()==State.E1)
@@ -93,21 +95,40 @@ public class StateMachine {
 							System.out.println("ALERT: 3 people in the room");
 						else if(getCurrent()==State.E3)
 							setCurrent(State.E2);
-						else
-							log.severe("Unreachable state from "+getCurrent()+" in Event = "+event);
+						//else
+						//	log.severe("Unreachable state from "+getCurrent()+" in Event = "+event);
 						break;
 						
 					case OUTPUT:
-						if(getCurrent()==State.E1)
+						//Existe actividad dentro de la habitación, entonces pasa al estado 3
+						if(getCurrent()==State.E1&&activity)
 							setCurrent(State.E3);
-						else if(getCurrent()==State.E2)
+						//El paciente deja la habitación. Despues no hay actividad adentro. ESCAPE
+						else if(getCurrent()==State.E1&&!activity)
+						{
+							setCurrent(State.E4);
 							setCurrent(State.E0);
-						else if(getCurrent()==State.E3)
-							System.out.println("ALERT: Escape!!");
-						else if(getCurrent()==State.E3)
+						//Dos personas salen de la habitación. Despues no hay actividad adentro.
+						}else if(getCurrent()==State.E2)
+							setCurrent(State.E0);
+						//El paciente deja la habitación. Despues no hay actividad adentro. ESCAPE
+						else if(getCurrent()==State.E3&&!activity)
+						{
+							setCurrent(State.E4);
+							setCurrent(State.E0);
+						//El cuidador entra por el paciente.
+						}else if(getCurrent()==State.E3)
 							setCurrent(State.E2);
-						else
-							log.severe("Unreachable state from "+getCurrent()+" in Event = "+event);
+						//else
+						//	log.severe("Unreachable state from "+getCurrent()+" in Event = "+event);
+						break;
+						
+					case INACTIVITY:
+						activity=false;
+						break;
+						
+					case RESTART:
+						currentState=State.E0;
 						break;
 						
 					default:
@@ -162,7 +183,7 @@ public class StateMachine {
 	 *             If the desired state is not reachable from current state
 	 */
 	private static State setCurrent(State desiredState) {
-		log.info("at state: " + currentState + "; requesting state: " + desiredState);		
+		//log.info("at state: " + currentState + "; requesting state: " + desiredState);		
 
 		if (!isReachable(desiredState)) {
 			throw new IllegalArgumentException();
