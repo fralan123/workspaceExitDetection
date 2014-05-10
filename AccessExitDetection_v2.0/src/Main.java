@@ -28,20 +28,22 @@ public class Main {
 	final static String PATH = "src/Files/";
 	final static String FILE = "02_EntraSoloSaleAcompanado.txt";
 	int b,m,l;
-	double T = 2000;			//Time in milliseconds	
+	double T = 1000;			//Time in milliseconds	
 	final static int O = 1;		//Output 	= 1
 	final static int I = 2;		//Input 	= 2
 	final static int PI = 3;	//Pyrometer Inside	= 3
 	final static int PO = 4;	//Pyrometer Outside	= 4
 	final static int M = 5;		//Magnetometer	= 5
 	double lambda = 1;	
-	final double outputMean = 28.55;
-	//final double outputMean = 29.8;	
-	final double outputStandarDeviation = 1.7312909695;
-	//final double outputStandarDeviation = 1.7;
-	final double inputMean = 27.3;
-	final double inputStandarDeviation = 2.2501461941;
-	//final double inputStandarDeviation = 2.25;
+	//NUEVOS VALORES SIN CONSIDERAR AL PIROMETRO 1
+	//final double outputMean = 28.55;
+	final double outputMean = 25.45;	
+	//final double outputStandarDeviation = 1.7312909695;
+	final double outputStandarDeviation = 1.5719582156;
+	//final double inputMean = 27.3;
+	final double inputMean = 23.55;
+	//final double inputStandarDeviation = 2.2501461941;
+	final double inputStandarDeviation = 2.1392325235;
 	
 	final double pyrometerOutsideInputMean = 3.75;
 	final double pyrometerOutsideInputStandarDeviation = 1.0699237553;
@@ -66,6 +68,9 @@ public class Main {
 	
 	double l_thresholdOutput = pyrometerOutsideOutputMean+pyrometerOutsideOutputStandarDeviation;
 	double b_thresholdOutput = pyrometerInsideOutputMean+pyrometerInsideOutputStandarDeviation;
+	
+	double l_threshold = pyrometerInsideInputMean+pyrometerInsideInputStandarDeviation;
+	double b_threshold = pyrometerInsideOutputMean+pyrometerInsideOutputStandarDeviation;
 	
 	final double intersectionInputMean=17;
 	final double intersectionInputStandarDeviation=1.8918106059;
@@ -99,6 +104,9 @@ public class Main {
 			W.add(nodeA);
 			if(W.lastElement()==null)
 				break;
+			//CORRECCION DE BUG: Cuando ya termino el evento y despues el NodeID es 0, entonces se reinicia el algoritmo
+			if(W.lastElement().getNodeID()==0&&W.size()==1)
+				algorithm();
 			if(W.lastElement().getNodeID()==0)
 				evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
 			
@@ -176,11 +184,11 @@ public class Main {
 				if(W.lastElement().getNodeID()==0)
 					evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
 				//Se adecua el valor del umbral del final l_threshold
-				double l_threshold=0;
-				if(function.validateEventType(nodeA, nodeB)==O)				
-					l_threshold=l_thresholdOutput;				
-				else if(function.validateEventType(nodeA, nodeB)==I)				
-					l_threshold=l_thresholdInput;				
+//				double l_threshold=0;
+//				if(function.validateEventType(nodeA, nodeB)==O)				
+//					l_threshold=l_thresholdOutput;				
+//				else if(function.validateEventType(nodeA, nodeB)==I)				
+//					l_threshold=l_thresholdInput;				
 				
 				while((getDifference(W.lastElement(),W.get(W.size()-2))<=T)&&(l<=l_threshold))
 				{
@@ -199,17 +207,19 @@ public class Main {
 				//Keep the last node in nodeB
 				nodeB = W.lastElement();
 				
+				if(b > b_threshold)
+					b = (int) l_threshold;
 				
-				if(function.validateEventType(nodeA, nodeB)==O)
-				{
-					if(b > b_thresholdOutput)
-						b = (int) l_thresholdOutput;
-				}
-				else if(function.validateEventType(nodeA, nodeB)==I)
-				{
-					if(b > b_thresholdInput)
-						b = (int) l_thresholdInput;
-				}
+//				if(function.validateEventType(nodeA, nodeB)==O)
+//				{
+//					if(b > b_thresholdOutput)
+//						b = (int) l_thresholdOutput;
+//				}
+//				else if(function.validateEventType(nodeA, nodeB)==I)
+//				{
+//					if(b > b_thresholdInput)
+//						b = (int) l_thresholdInput;
+//				}
 				
 				String e = event(b,m,l,nodeA,nodeB,false); 
 				//send_event(e);
@@ -263,7 +273,8 @@ public class Main {
 		if(eventType==O)
 		{
 			//if(function.evaluateAccessOrExit(b2+m2+l2, outputMean, lambda, outputStandarDeviation, m2, intersectionOutputMean)>=0)
-			if(function.evaluateAccessOrExit(b2+m2+l2, outputMean, lambda, outputStandarDeviation)>=0)
+			//if(function.evaluateAccessOrExit(b2+m2+l2, outputMean, lambda, outputStandarDeviation)>=0)
+			if(function.evaluateAccessOrExit(b2+m2, outputMean, lambda, outputStandarDeviation)>=0)
 			{
 				if(inactivity)
 					cs.changeState(Event.INACTIVITY);
@@ -278,7 +289,8 @@ public class Main {
 		if(eventType==I)
 		{
 			//if(function.evaluateAccessOrExit(b2+m2+l2, inputMean, lambda, inputStandarDeviation, m2, intersectionInputMean)>=0)
-			if(function.evaluateAccessOrExit(b2+m2+l2, inputMean, lambda, inputStandarDeviation)>=0)
+			//if(function.evaluateAccessOrExit(b2+m2+l2, inputMean, lambda, inputStandarDeviation)>=0)
+			if(function.evaluateAccessOrExit(m2+l2, inputMean, lambda, inputStandarDeviation)>=0)
 			{
 				cs.changeState(Event.INPUT);
 				e = "Input";
