@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="18" version="2.0">
+<workbench progressCount="12" version="2.0">
 <workbenchAdvisor/>
 <window height="305" maximized="true" width="1605" x="0" y="31">
 <fastViewData fastViewLocation="1024"/>
@@ -8,20 +8,23 @@
 </perspectiveBar>
 <coolbarLayout>
 <coolItem id="group.file" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="132" y="26"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="192" y="30"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="com.jformdesigner.eclipse.actionSet" itemType="typeToolBarContribution" x="68" y="30"/>
+<coolItem id="com.python.pydev.debug.actionSet" itemType="typeToolBarContribution" x="68" y="30"/>
+<coolItem id="com.python.pydev.navigate.actionSet" itemType="typeToolBarContribution" x="40" y="30"/>
 <coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="142" y="26"/>
-<coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="294" y="26"/>
-<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="80" y="26"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="80" y="26"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="62" y="26"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="156" y="30"/>
+<coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="316" y="30"/>
+<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="256" y="30"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="212" y="26"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="232" y="30"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
-<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -30,10 +33,16 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
 </folder>
 </info>
 </editorArea>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseNode.java" partName="DatabaseNode.java" path="/home/zero/workspaceExitDetection/AccessExitDetectionRT/src/tools/DatabaseNode.java" title="DatabaseNode.java" tooltip="AccessExitDetectionRT/src/tools/DatabaseNode.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AccessExitDetectionRT/src/tools/DatabaseNode.java"/>
+<editorState selectionHorizontalPixel="101" selectionLength="0" selectionOffset="2784" selectionTopPixel="0"/>
+</editor>
 </editors>
 <views>
 <view id="org.eclipse.debug.ui.ExpressionView" partName="Expressions">
@@ -51,8 +60,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings"/>
-<category IMemento.internal.id="Warnings (21 items)"/>
+<category IMemento.internal.id="Warnings (4 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="485" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -81,6 +89,7 @@
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.NonJavaProjectsFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.internal.ui.PackageExplorer.EmptyInnerPackageFilter" isEnabled="true"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.PackageDeclarationFilter" isEnabled="true"/>
+<child filterId="_patternFilterId_*.jfd" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.internal.ui.PackageExplorer.EmptyPackageFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.ImportDeclarationFilter" isEnabled="true"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.FieldsFilter" isEnabled="false"/>
@@ -121,7 +130,7 @@
 </view>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -206,6 +215,12 @@
 <alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
 <alwaysOnActionSet id="org.eclipse.jdt.debug.ui.JDTDebugActionSet"/>
 <alwaysOnActionSet id="org.eclipse.jdt.ui.JavaActionSet"/>
+<alwaysOnActionSet id="com.jformdesigner.eclipse.actionSet"/>
+<alwaysOnActionSet id="com.python.pydev.navigate.actionSet"/>
+<alwaysOnActionSet id="com.python.pydev.debug.actionSet"/>
+<alwaysOnActionSet id="org.python.pydev.exceptionBreakpoints"/>
+<alwaysOnActionSet id="org.python.pydev.pyPropertyTrace"/>
+<alwaysOnActionSet id="org.eclipse.wb.core.ui.actionset"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
 <show_view_action id="org.eclipse.debug.ui.DebugView"/>
 <show_view_action id="org.eclipse.debug.ui.VariableView"/>
@@ -308,6 +323,8 @@
 <alwaysOnActionSet id="org.eclipse.jdt.debug.ui.JDTDebugActionSet"/>
 <alwaysOnActionSet id="org.eclipse.jdt.junit.JUnitActionSet"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<alwaysOnActionSet id="com.jformdesigner.eclipse.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.wb.core.ui.actionset"/>
 <show_view_action id="org.eclipse.jdt.ui.PackageExplorer"/>
 <show_view_action id="org.eclipse.jdt.ui.TypeHierarchy"/>
 <show_view_action id="org.eclipse.jdt.ui.SourceView"/>
@@ -373,7 +390,7 @@
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.25739458" ratioLeft="409" ratioRight="1180" relationship="2" relative="left"/>
+<info part="org.eclipse.ui.editorss" ratio="0.20221402" ratioLeft="274" ratioRight="1081" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.7606383" ratioLeft="572" ratioRight="180" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
@@ -406,7 +423,113 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AccessExitDetectionRT/src/tools/DatabaseNode.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AccessExitDetectionRT/src/Functions.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AccessExitDetectionRT/src/DataReader.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AccessExitDetectionRT/src/Node.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AccessExitDetectionRT/src/Main.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AccessExitDetectionRT/src/tools/Snippet.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AccessExitDetectionRT/src/tools/Node.java"/>
+</editors>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="265" y="0"/>
+</item>
+<item historyLabel="Functions.java" index="1">
+<position info="not_deleted" x="18" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="265" y="0"/>
+</item>
+<item historyLabel="Functions.java" index="1">
+<position info="not_deleted" x="18" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="265" y="0"/>
+</item>
+<item historyLabel="Functions.java" index="1">
+<position info="not_deleted" x="18" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="265" y="0"/>
+</item>
+<item historyLabel="DataReader.java" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="265" y="0"/>
+</item>
+<item historyLabel="Node.java" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Main.java" index="4">
+<position/>
+</item>
+<item historyLabel="Node.java" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="265" y="0"/>
+</item>
+<item historyLabel="Snippet.java" index="5">
+<position info="not_deleted" x="56" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="265" y="0"/>
+</item>
+<item historyLabel="Functions.java" index="1">
+<position info="not_deleted" x="18" y="0"/>
+</item>
+<item historyLabel="Main.java" index="4">
+<position info="not_deleted" x="354" y="0"/>
+</item>
+<item historyLabel="Functions.java" index="1">
+<position info="not_deleted" x="18" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="265" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="639" y="0"/>
+</item>
+<item historyLabel="Node.java" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="639" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="1595" y="0"/>
+</item>
+<item historyLabel="Node.java" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="1595" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="1549" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="1595" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="2673" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="1665" y="0"/>
+</item>
+<item historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="613" y="0"/>
+</item>
+<item historyLabel="Node.java" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item active="true" historyLabel="DatabaseNode.java" index="0">
+<position info="not_deleted" x="613" y="0"/>
+</item>
+</navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -423,20 +546,29 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Node.java" tooltip="AccessExitDetectionRT/src/tools/Node.java">
+<persistable path="/AccessExitDetectionRT/src/tools/Node.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="AccessExitDetectionRT/src/Main.java">
+<persistable path="/AccessExitDetectionRT/src/Main.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Snippet.java" tooltip="AccessExitDetectionRT/src/tools/Snippet.java">
+<persistable path="/AccessExitDetectionRT/src/tools/Snippet.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Node.java" tooltip="AccessExitDetectionRT/src/Node.java">
+<persistable path="/AccessExitDetectionRT/src/Node.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DataReader.java" tooltip="AccessExitDetectionRT/src/DataReader.java">
+<persistable path="/AccessExitDetectionRT/src/DataReader.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Functions.java" tooltip="AccessExitDetectionRT/src/Functions.java">
+<persistable path="/AccessExitDetectionRT/src/Functions.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseNode.java" tooltip="AccessExitDetectionRT/src/tools/DatabaseNode.java">
 <persistable path="/AccessExitDetectionRT/src/tools/DatabaseNode.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseFilter.java" tooltip="AccessExitDetectionRT/src/tools/DatabaseFilter.java">
 <persistable path="/AccessExitDetectionRT/src/tools/DatabaseFilter.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Functions.java" tooltip="AccessExitDetectionRT/src/Functions.java">
-<persistable path="/AccessExitDetectionRT/src/Functions.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DataReader.java" tooltip="AccessExitDetectionRT/src/DataReader.java">
-<persistable path="/AccessExitDetectionRT/src/DataReader.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="AccessExitDetectionRT/src/Main.java">
-<persistable path="/AccessExitDetectionRT/src/Main.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TesterV2.java" tooltip="DataReader/src/test/TesterV2.java">
 <persistable path="/DataReader/src/test/TesterV2.java"/>
@@ -458,15 +590,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseFilter.java" tooltip="AccessExitDetection_v2.1/src/tools/DatabaseFilter.java">
 <persistable path="/AccessExitDetection_v2.1/src/tools/DatabaseFilter.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Node.java" tooltip="AccessExitDetection_v2.1/src/Node.java">
-<persistable path="/AccessExitDetection_v2.1/src/Node.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="AccessExitDetection_v1.5/src/Main.java">
-<persistable path="/AccessExitDetection_v1.5/src/Main.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Functions.java" tooltip="AccessExitDetection_v2.1/src/Functions.java">
-<persistable path="/AccessExitDetection_v2.1/src/Functions.java"/>
 </file>
 </mruList>
 </workbench>
