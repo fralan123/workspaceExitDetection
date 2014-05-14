@@ -93,7 +93,8 @@ public class Main {
         public void run()  
         { 
             Calendar start = Calendar.getInstance();
-            System.out.println("time ="+start.get(Calendar.HOUR)+":"+start.get(Calendar.MINUTE)+":"+start.get(Calendar.SECOND)); 
+            System.out.println("time ="+start.get(Calendar.HOUR)+":"+start.get(Calendar.MINUTE)+":"+start.get(Calendar.SECOND));
+            
         } 
     }; 
     
@@ -334,26 +335,6 @@ public class Main {
 		return difference;
 	}
 	
-	/**
-	 * Method for reading the data from the file	 
-	 */
-	public void reading()
-	{	
-		try {
-			// Open the file that is the first command line parameter
-			FileInputStream fstream = new FileInputStream(
-					PATH+FILE);
-			// Get the object of DataInputStream
-			in = new DataInputStream(fstream);
-			bufferedReader = new BufferedReader(new InputStreamReader(in));
-			//Run the algorithm
-			algorithm();
-			
-		} catch (Exception e) {
-			System.err.println("Error: " + e.getMessage());
-		}
-		
-	}
 	
 	/**
 	 * Method that returns the next reading from the bufferedReader
@@ -398,7 +379,7 @@ public class Main {
 //			main.reading();	
 //		}
 		Main main = new Main(2.6);
-		main.reading();	
+		
 	}
 
 }

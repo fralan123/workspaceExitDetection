@@ -5,6 +5,7 @@
 <fullyQualifiedTypeName name="java.util.TimerTask"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="java.util.Timer"/>
-<fullyQualifiedTypeName name="tools.DatabaseNode"/>
 <fullyQualifiedTypeName name="tools.Node"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="tools.DatabaseNode"/>
 </qualifiedTypeNameHistroy>

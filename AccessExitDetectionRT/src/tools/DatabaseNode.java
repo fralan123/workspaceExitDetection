@@ -1,14 +1,12 @@
 package tools;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DatabaseNode {
 	Connection conn = null;
@@ -84,10 +82,12 @@ public class DatabaseNode {
 	            stmt = conn.createStatement();
 	            
 	            Calendar now = Calendar.getInstance();
-	            String today = now.get(Calendar.YEAR)+"-"+now.get(Calendar.MONTH)+"-"+now.get(Calendar.DAY_OF_MONTH);
+	            String today = now.get(Calendar.YEAR)+"-"+now.MONTH+"-"+now.get(Calendar.DAY_OF_MONTH);
+	            today = "2012-05-13";
+	            
 
 	            //if (stmt.execute("select * from samples where today=\""+today+"\" and now > \""+now1+"\" and now < \""+now2+"\" order by now")) {
-	            if (stmt.execute("select * from samples where today=\""+today+"\" and now >\""+time+"\" order by now asc")) {	            
+	            if (stmt.execute("select * from samples where today=\""+today+"\" and now >\""+time+"\" and samplesID!="+ID+" order by now asc")) {	            
 	                rs = stmt.getResultSet();
 	            } else {
 	                System.err.println("select failed");
@@ -132,7 +132,8 @@ public class DatabaseNode {
 	}	
     public static void main(String args[])
     {
-    	new DatabaseNode().getLastNode("11:32:58");
+    	//new DatabaseNode().getLastNode("11:32:58");
+    	new DatabaseNode().getLastNode("11:32:58",10182);
     }
 
 }

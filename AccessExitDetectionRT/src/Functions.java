@@ -1,3 +1,4 @@
+import tools.DatabaseNode;
 import tools.Node;
 public class Functions 
 {
@@ -31,10 +32,20 @@ public class Functions
 		value = 1 - (Math.abs(sampleCount-mean))/(lambda*standardDeviation); //formula
 		return value;
 	}
-	public Node getNode()
+	public Node getNode(String time)
 	{
+		DatabaseNode node = new DatabaseNode();
+		Node _node = new Node();
+		_node = node.getLastNode(time);
 		
-		return null;		
+		return _node;
 	}
-
+	public Node getNextNode(String time, int ID)
+	{
+		DatabaseNode node = new DatabaseNode();
+		Node _node = new Node();
+		_node = node.getLastNode(time,ID);
+		
+		return _node;
+	}
 }
