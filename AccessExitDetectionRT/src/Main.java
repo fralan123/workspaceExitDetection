@@ -9,6 +9,7 @@ import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
@@ -17,26 +18,24 @@ import fsm.StateMachine.Event;
 import tools.Node;
 public class Main {
 
+	Main(){}
 	Main(double lambda2)
 	{
 		this.lambda = lambda2;
 		System.out.println("Lambda = "+lambda2);
-		this.dataReader = new DataReader(("serial@/dev/ttyUSB1:iris"));
+		//this.dataReader = new DataReader(("serial@/dev/ttyUSB1:iris"));
 		// Aquí se pone en marcha el timer cada segundo. 
 	     Timer timer = new Timer(); 
 	     // Dentro de 0 milisegundos avísame cada 1000 milisegundos 
-	     timer.scheduleAtFixedRate(timerTask, 0, 1000);
+	     //timer.scheduleAtFixedRate(timerTask, 0, 1000);
+	     start.getTime();
+	    initializeVariables();
+	    readData();
 	}
-	Main()
-	{		
-	}	
+	
 	DataReader dataReader;
-	SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss"); 	// For time
-	BufferedReader bufferedReader;
-	DataInputStream in;
+	SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss"); 	// For time	
 	Vector<Node> W = new Vector<Node>();
-	final static String PATH = "src/Files/";
-	final static String FILE = "04_EntraAcompanadoSaleAcompanado.txt";
 	int b,m,l;
 	double T = 2000;			//Time in milliseconds	
 	final static int O = 1;		//Output 	= 1
@@ -75,9 +74,12 @@ public class Main {
 	//Variable para saber si existe magnetómetro
 	boolean Magnetometer = false;
 
-	ChangeState cs;
-	Functions function;
-
+	public ChangeState cs;
+	public Functions function;
+	public Node lastNode;
+	
+    Calendar start = Calendar.getInstance();
+	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 	
 	public void initializeVariables()
 	{
@@ -85,6 +87,7 @@ public class Main {
 		W = new Vector<Node>();
 		cs = new ChangeState();
 		function = new Functions();   
+		lastNode = new Node();
 	}
 	
 	  // Clase en la que está el código a ejecutar 
@@ -92,31 +95,71 @@ public class Main {
     { 
         public void run()  
         { 
-            Calendar start = Calendar.getInstance();
-            System.out.println("time ="+start.get(Calendar.HOUR)+":"+start.get(Calendar.MINUTE)+":"+start.get(Calendar.SECOND));
-            
+        	//readData();
         } 
     }; 
-    
+    public void readData()
+    {
+    	while(true)
+    	{
+    	Node node = new Node();
+    	System.out.println(sdf.format(start.getTime()));
+    	start.add(Calendar.SECOND, -1);
+    	String time = sdf.format(start.getTime()); 
+    	Functions function = new Functions();
+        node = function.getNode(time);
+        //First time there's a new event
+        if(lastNode.getNodeID()==0&&node.getNodeID()!=0)
+        {
+        	lastNode=node;
+        	W.add(node);
+        }
+        else 
+        	//End of event
+        	if(lastNode.getNodeID()!=0&&node.getNodeID()==0)
+        		System.out.println("End of event");
+        	else
+        		//No data yet
+        		if(lastNode.getNodeID()==0&&node.getNodeID()==0)
+            		System.out.println("No data");
+        else
+        {
+            //Get the next node when there are two samples at the same time
+            if(lastNode.getDbID()==node.getDbID())
+            {
+            	node = function.getNextNode(sdf.format(node.getTime()), node.getDbID());
+            	function.getNextNode(sdf.format(start.getTime()), node.getDbID());
+            }
+        }
+        try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+    	}
+    }
 	public void algorithm()
 	{
-		while(true)
-		{			
-			Node nodeA = new Node(); 
-			Node nodeB = new Node();
-			initializeVariables();
-			//First node the first time the algorithm runs 
-			//Keep the first node in nodeA
-			nodeA = nextNode();
-			W.add(nodeA);
-			if(W.lastElement()==null)
-				break;
-			//CORRECCION DE BUG: Cuando ya termino el evento y despues el NodeID es 0, entonces se reinicia el algoritmo
-			if(W.lastElement().getNodeID()==0&&W.size()==1)
-				algorithm();
-			if(W.lastElement().getNodeID()==0)
-				evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-			
+		Node nodeA = new Node(); 
+		Node nodeB = new Node();
+		
+		if(W.lastElement()==null)
+			System.out.println("break");
+		//CORRECCION DE BUG: Cuando ya termino el evento y despues el NodeID es 0, entonces se reinicia el algoritmo
+		if(W.lastElement().getNodeID()==0&&W.size()==1)
+			System.out.println("break");
+		if(W.lastElement().getNodeID()==0)
+			evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
+		
+		nodeA=W.firstElement();
+		nodeB=W.lastElement();
+		
+		b=2;
+		for (int i = 2; i < W.size(); i++)
+		{
+			if(W.get(i).getNodeID()==W.get(i-1).getNodeID())
+				if(W.get(i).getNodeID()!=701)
+					b++;
 			
 			//Second node the first time the algorithm runs
 			W.add(nextNode());
@@ -251,9 +294,6 @@ public class Main {
 	}
 	private void evaluateInterrupted(Node nodeA, Node nodeB)
 	{
-//		if(b > b_threshold)
-//			b = (int) l_threshold;
-		
 		if(function.validateEventType(nodeA, nodeB)==O)
 		{
 			if(b > b_thresholdOutput)
@@ -343,33 +383,6 @@ public class Main {
 	public Node nextNode()
 	{
 		Node node = new Node();
-		String strLine;
-		// Read File Line By Line
-		try {			
-			if ((strLine = bufferedReader.readLine()) != null) {
-				// Print the content on the console
-				String lineArray[] = strLine.split("\t");					
-				node.setNodeID(Integer.parseInt(lineArray[1]));
-				node.setTime(formatter.parse(lineArray[3]));
-				node.setDbID(Integer.parseInt(lineArray[0]));
-				
-			}
-			else
-			{
-				// Close the input stream
-				in.close();
-				System.out.println("Total Input = "+counterInput);
-				System.out.println("Total Output = "+counterOutput);				
-				//System.exit(0);
-				return null;
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return node;		
 		
 	}

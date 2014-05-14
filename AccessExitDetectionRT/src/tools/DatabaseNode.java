@@ -28,7 +28,8 @@ public class DatabaseNode {
 	            
 	            Calendar now = Calendar.getInstance();
 	            String today = now.get(Calendar.YEAR)+"-"+now.get(Calendar.MONTH)+"-"+now.get(Calendar.DAY_OF_MONTH);
-
+	            today = "2012-05-14";
+	            
 	            //if (stmt.execute("select * from samples where today=\""+today+"\" and now > \""+now1+"\" and now < \""+now2+"\" order by now")) {
 	            if (stmt.execute("select * from samples where today=\""+today+"\" and now >\""+time+"\" order by now asc")) {	            
 	                rs = stmt.getResultSet();
@@ -83,7 +84,7 @@ public class DatabaseNode {
 	            
 	            Calendar now = Calendar.getInstance();
 	            String today = now.get(Calendar.YEAR)+"-"+now.MONTH+"-"+now.get(Calendar.DAY_OF_MONTH);
-	            today = "2012-05-13";
+	            today = "2012-05-14";
 	            
 
 	            //if (stmt.execute("select * from samples where today=\""+today+"\" and now > \""+now1+"\" and now < \""+now2+"\" order by now")) {
