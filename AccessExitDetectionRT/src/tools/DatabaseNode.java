@@ -40,7 +40,7 @@ public class DatabaseNode {
 	            if(rs.first())
 	            {
 	            	node.setDbID(rs.getInt(1));
-	            	node.setNodeID(rs.getInt(1));
+	            	node.setNodeID(rs.getInt(2));
 	            	node.setTime(rs.getTime(4));
 	            }
 
@@ -97,7 +97,7 @@ public class DatabaseNode {
 	            if(rs.first())
 	            {
 	            	node.setDbID(rs.getInt(1));
-	            	node.setNodeID(rs.getInt(1));
+	            	node.setNodeID(rs.getInt(2));
 	            	node.setTime(rs.getTime(4));
 	            }
 

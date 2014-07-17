@@ -32,10 +32,11 @@ public class Main {
 
             stmt = conn.createStatement();
             
-            String now1 = "12:15:00";
-            String now2 = "12:47:00";
+            String now1 = "13:03:30";
+            String now2 = "13:04:18";
+            int idNode = 701;
 
-            if (stmt.execute("select * from samples where today=\"2012-04-25\" and now > \""+now1+"\" and now < \""+now2+"\" order by now asc")) {
+            if (stmt.execute("select * from samples where today=\"2012-04-15\" and now > \""+now1+"\" and now < \""+now2+"\" and id_node=\""+idNode+"\" order by now asc")) {
                 rs = stmt.getResultSet();
             } else {
                 System.err.println("select failed");
@@ -63,7 +64,7 @@ public class Main {
                 		System.out.println("-------------------------------");
                 }
                 
-                String entry = rs.getString(2)+"\t"+rs.getString(4);
+                String entry = rs.getString(2)+"\t"+rs.getString(4)+"\t1";
                 System.out.println(entry);
             }
 

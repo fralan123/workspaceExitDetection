@@ -1,8 +1,5 @@
 INDEX VERSION 1.126+/home/zero/workspaceExitDetection/.metadata/.plugins/org.eclipse.jdt.core
-3709865298.index
+4268470881.index
 2643102099.index
-2363642837.index
-3154908217.index
-1912554566.index
-2269448759.index
-1030302294.index
+4023750915.index
+22689461.index

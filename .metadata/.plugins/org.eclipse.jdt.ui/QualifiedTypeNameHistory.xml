@@ -2,11 +2,18 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="DataReader"/>
 <fullyQualifiedTypeName name="java.util.TimerTask"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="tools.DatabaseNode"/>
-<fullyQualifiedTypeName name="tools.Node"/>
 <fullyQualifiedTypeName name="java.util.Timer"/>
 <fullyQualifiedTypeName name="java.lang.Thread"/>
-<fullyQualifiedTypeName name="Functions"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="tools.Node"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="java.text.DateFormat"/>
+<fullyQualifiedTypeName name="java.sql.Timestamp"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="Node"/>
+<fullyQualifiedTypeName name="Algorithm"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="Functions"/>
 </qualifiedTypeNameHistroy>
