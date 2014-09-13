@@ -29,9 +29,11 @@ public class Reader implements MessageListener
 	String PCTime;
 	Calendar now2 = Calendar.getInstance();
 	DateTime arrival = new DateTime();
+	double T = 2000;			//Time in milliseconds	
 	
 	Vector<Node> vector;
-	private Date timeA;
+	Functions function =  new Functions();
+	Date timeA, timeB;
 	private boolean inactivityP1;
 	private boolean inactivityP2;
 
@@ -54,9 +56,9 @@ public class Reader implements MessageListener
 		String time = now.get(Calendar.HOUR_OF_DAY) + ":"
 				+ now.get(Calendar.MINUTE) + ":" + now.get(Calendar.SECOND);
 		conexion.conectar(); // Open the connection with database.
-		if (dataX != 65295)
-			System.out.println("Node_ID:" + nodeID + " Node_time:" + localTime
-					+ " time:" + time + " dataX=" + dataX + " dataM=" + dataM);
+		//if (dataX != 65295)
+		//	System.out.println("Node_ID:" + nodeID + " Node_time:" + localTime
+		//			+ " time:" + time + " dataX=" + dataX + " dataM=" + dataM);
 
 		try
 		{
@@ -124,10 +126,17 @@ public class Reader implements MessageListener
 	}
 
 	public void createVector(int nodeID)
-	{
-		if (vector.size() > 0)
-			timeA = vector.lastElement().getTime();
-		vector.add(new Node(nodeID, new Date()));
+	{		
+		Node node = new Node(nodeID, new Date());
+		if (vector.size() > 1)
+		{
+			if(function.getDifference(node,vector.lastElement())>T)
+			{
+				new Algorithm(vector);
+				init();
+			}
+		}
+		vector.add(node);
 
 	}
 
@@ -138,11 +147,19 @@ public class Reader implements MessageListener
 			DataMsg results = (DataMsg) msg;
 			// if(results.get_dataX()!=65295)
 			if (results.get_dataX() < 65200)
+			//if(true)
 			{
-				dbInsertion(results.get_NodeID(), results.get_dataM(),results.get_dataX(), (int) results.get_localTime());
+				Calendar now = Calendar.getInstance();
+				String time = now.get(Calendar.HOUR_OF_DAY) + ":"
+						+ now.get(Calendar.MINUTE) + ":" + now.get(Calendar.SECOND);
+				//if(results.get_dataX()!=65295)
+				System.out.println("Node_ID:" + results.get_NodeID() + " Node_time:" + results.get_localTime()
+						+ " time:" + time + " dataX=" + results.get_dataX() + " dataM=" + results.get_dataM());
+				
+				//dbInsertion(results.get_NodeID(), results.get_dataM(),results.get_dataX(), (int) results.get_localTime());
 				createVector(results.get_NodeID());
 			}
-			else
+			if(false)//else
 			{
 				if(results.get_NodeID()==701)
 					inactivityP1=true;

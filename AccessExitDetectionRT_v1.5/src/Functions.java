@@ -2,8 +2,8 @@
 public class Functions 
 {
 	
-	final int pyrometerOutside= 701;
-	final int pyrometerInside= 702; 
+	final int pyrometerOutside= 702;
+	final int pyrometerInside= 701; 
 	final int magnetometer = 703;
 	
 	final double outputMean = 21.9;	
@@ -68,7 +68,19 @@ public class Functions
 	{
 		double value = 0;
 		value = 1 - (Math.abs(sampleCount-mean))/(lambda*standardDeviation); //formula
+		System.out.println("Formula value = "+value);
 		return value;
+	}
+	/**
+	 * Get the time difference between current node and last node (nodeA-nodeB)
+	 * @param nodeA
+	 * @param nodeB
+	 * @return difference between nodeA and nodeB in milliseconds
+	 */
+	public double getDifference(Node nodeA, Node nodeB)
+	{
+		double difference = nodeA.getTime().getTime() - nodeB.getTime().getTime();
+		return difference;
 	}
 
 }

@@ -18,7 +18,12 @@ public class Algorithm {
 		this.lambda = lambda2;
 		System.out.println("Lambda = "+lambda2);
 	}
-	Algorithm(Vector<Node> W){}
+	Algorithm(Vector<Node> W)
+	{
+		initializeVariables();
+		this.W = W;
+		algorithm();
+	}
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss"); 	// For time
 	BufferedReader bufferedReader;
@@ -51,7 +56,7 @@ public class Algorithm {
 		boolean M=false;
 		boolean L=false;
 		boolean Th=true;
-		initializeVariables();
+		//initializeVariables();	//REVISAR SI SE DEBEN DE INICIALIZAR EN ESTE PUNTO
 		double l_threshold=0;
 		b=2;
 		m=1;
@@ -100,149 +105,29 @@ public class Algorithm {
 				l++;
 			}
 		}
-		while(true)
-		{			
-			nodeA = nextNode();
-			W.add(nodeA);
-			if(W.lastElement()==null)
-				break;
-			//CORRECCION DE BUG: Cuando ya termino el evento y despues el NodeID es 0, entonces se reinicia el algoritmo
-			if(W.lastElement().getNodeID()==0&&W.size()==1)
-				algorithm();
-			if(W.lastElement().getNodeID()==0)
-				evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-			
-			
-			//Second node the first time the algorithm runs
-			W.add(nextNode());
-			if(W.lastElement()==null)
-				break;
-			if(W.lastElement().getNodeID()==0)
-				evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-			while(getDifference(W.lastElement(),W.get(W.size()-2))<=T)
-			{
-				b=2;
-				//System.out.println(i+"\t");
-				W.add(nextNode());
-				if(W.lastElement()==null)
-					break;
-				if(W.lastElement().getNodeID()==0)
-					evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-				while((getDifference(W.lastElement(),W.get(W.size()-2))<=T)
-						&&(W.lastElement().getNodeID()==W.get(W.size()-2).getNodeID()))
-				{
-					if(W.lastElement().getNodeID()!=701)
-						b++;
-					//System.out.println(i+"\t");
-					W.add(nextNode());
-					if(W.lastElement()==null)
-						break;
-					if(W.lastElement().getNodeID()==0)
-						evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-				}
-				//Si la diferencia es mayor a T, se evalua
-				if(getDifference(W.lastElement(),W.get(W.size()-2))>T)
-						evaluateInterrupted(nodeA, W.lastElement());
-				//Beginning of intersection
-				m=1;
-				W.add(nextNode());
-				if(W.lastElement()==null)
-					break;
-				if(W.lastElement().getNodeID()==0)
-					evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-				while((getDifference(W.lastElement(),W.get(W.size()-2))<=T)
-						&&((W.lastElement().getNodeID()!=W.get(W.size()-2).getNodeID())
-						||(W.get(W.size()-2).getNodeID()!=W.get(W.size()-3).getNodeID())
-						||(W.lastElement().getNodeID()!=W.get(W.size()-3).getNodeID())))
-				{
-					if(W.lastElement().getNodeID()!=701)
-						m++;
-					W.add(nextNode());	
-					//Verifica que exista magnetómetro
-					if(W.lastElement().getNodeID()==0)
-						Magnetometer=true;
-					if(W.lastElement()==null)
-						break;
-					if(W.lastElement().getNodeID()==0)
-						evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-				}
-				//End of intersection
-				if(W.lastElement().getNodeID()==W.get(W.size()-2).getNodeID()&&
-						W.lastElement().getNodeID()==W.get(W.size()-3).getNodeID())
-				{
-					m=m-2;
-					l=3;
-				}
-				else
-					l=1;
-				
-
-				//Si la diferencia es mayor a T, se evalua
-				if(getDifference(W.lastElement(),W.get(W.size()-2))>T)
-						evaluateInterrupted(nodeA, W.lastElement());
-				
-				//AQUI VA LA NUEVA CONDICION SI LA DIFERENCIA ES <= Q				
-				W.add(nextNode());
-				if(W.lastElement()==null)
-					break;
-				if(W.lastElement().getNodeID()==0)
-					evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-				//Se adecua el valor del umbral del final l_threshold
-				//double l_threshold=0;
-				if(function.validateEventType(nodeA, nodeB)==function.O)				
-					l_threshold=function.l_thresholdOutput;				
-				else if(function.validateEventType(nodeA, nodeB)==function.I)				
-					l_threshold=function.l_thresholdInput;				
-				
-				while((getDifference(W.lastElement(),W.get(W.size()-2))<=T)&&(l<=l_threshold))
-				{
-					if(W.lastElement().getNodeID()!=701)
-						l++;
-					W.add(nextNode());
-					if(W.lastElement()==null)
-						break;
-					if(W.lastElement().getNodeID()==0)
-						evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-				}
-
-				//Si la diferencia es mayor a T, se evalua
-				if(getDifference(W.lastElement(),W.get(W.size()-2))>T)
-						evaluateInterrupted(nodeA, W.lastElement());
-
-				//Keep the last node in nodeB
-				nodeB = W.lastElement();
-				
-//				if(b > b_threshold)
-//					b = (int) l_threshold;
-				
-				if(function.validateEventType(nodeA, nodeB)==function.O)
-				{
-					if(b > function.b_thresholdOutput)
-						b = (int) function.l_thresholdOutput;//b = (int) l_threshold;
-				}
-				else if(function.validateEventType(nodeA, nodeB)==function.I)
-				{
-					if(m > function.b_thresholdInput)
-						m = (int) function.l_thresholdInput;//m = (int) l_threshold;
-				}
-				
-				String e = event(b,m,l,nodeA,nodeB,false); 
-				//send_event(e);
-				System.out.println(e);
-				if(e=="Output")
-					counterOutput++;
-				if(e=="Input")
-					counterInput++;
-				//Keep the first node in nodeA 
-				nodeA = nextNode();
-				W.add(nodeA);		
-				if(W.lastElement()==null)
-					break;
-				if(W.lastElement().getNodeID()==0)
-					evaluateInterrupted(nodeA, W.elementAt(W.size()-2));				
-			}//Termina primer while de condicion diff<=T
-			
+		nodeA = W.firstElement();
+		nodeB = W.lastElement();
+		
+		if(function.validateEventType(nodeA, nodeB)==function.O)
+		{
+			if(b > function.b_thresholdOutput)
+				b = (int) function.l_thresholdOutput;
 		}
+		else if(function.validateEventType(nodeA, nodeB)==function.I)
+		{
+			if(m > function.b_thresholdInput)
+				m = (int) function.l_thresholdInput;
+		}
+		
+		String e = event(b,m,l,nodeA,nodeB,false); 
+		//send_event(e);
+		System.out.println(e);
+		if(e=="Output")
+			counterOutput++;
+		if(e=="Input")
+			counterInput++;
+		
+		
 	}
 	public void algorithm2()
 	{
@@ -270,7 +155,7 @@ public class Algorithm {
 				break;
 			if(W.lastElement().getNodeID()==0)
 				evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-			while(getDifference(W.lastElement(),W.get(W.size()-2))<=T)
+			while(function.getDifference(W.lastElement(),W.get(W.size()-2))<=T)
 			{
 				b=2;
 				//System.out.println(i+"\t");
@@ -279,7 +164,7 @@ public class Algorithm {
 					break;
 				if(W.lastElement().getNodeID()==0)
 					evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-				while((getDifference(W.lastElement(),W.get(W.size()-2))<=T)
+				while((function.getDifference(W.lastElement(),W.get(W.size()-2))<=T)
 						&&(W.lastElement().getNodeID()==W.get(W.size()-2).getNodeID()))
 				{
 					if(W.lastElement().getNodeID()!=701)
@@ -292,7 +177,7 @@ public class Algorithm {
 						evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
 				}
 				//Si la diferencia es mayor a T, se evalua
-				if(getDifference(W.lastElement(),W.get(W.size()-2))>T)
+				if(function.getDifference(W.lastElement(),W.get(W.size()-2))>T)
 						evaluateInterrupted(nodeA, W.lastElement());
 				//Beginning of intersection
 				m=1;
@@ -301,7 +186,7 @@ public class Algorithm {
 					break;
 				if(W.lastElement().getNodeID()==0)
 					evaluateInterrupted(nodeA, W.elementAt(W.size()-2));
-				while((getDifference(W.lastElement(),W.get(W.size()-2))<=T)
+				while((function.getDifference(W.lastElement(),W.get(W.size()-2))<=T)
 						&&((W.lastElement().getNodeID()!=W.get(W.size()-2).getNodeID())
 						||(W.get(W.size()-2).getNodeID()!=W.get(W.size()-3).getNodeID())
 						||(W.lastElement().getNodeID()!=W.get(W.size()-3).getNodeID())))
@@ -329,7 +214,7 @@ public class Algorithm {
 				
 
 				//Si la diferencia es mayor a T, se evalua
-				if(getDifference(W.lastElement(),W.get(W.size()-2))>T)
+				if(function.getDifference(W.lastElement(),W.get(W.size()-2))>T)
 						evaluateInterrupted(nodeA, W.lastElement());
 				
 				//AQUI VA LA NUEVA CONDICION SI LA DIFERENCIA ES <= Q				
@@ -345,7 +230,7 @@ public class Algorithm {
 				else if(function.validateEventType(nodeA, nodeB)==function.I)				
 					l_threshold=function.l_thresholdInput;				
 				
-				while((getDifference(W.lastElement(),W.get(W.size()-2))<=T)&&(l<=l_threshold))
+				while((function.getDifference(W.lastElement(),W.get(W.size()-2))<=T)&&(l<=l_threshold))
 				{
 					if(W.lastElement().getNodeID()!=701)
 						l++;
@@ -357,7 +242,7 @@ public class Algorithm {
 				}
 
 				//Si la diferencia es mayor a T, se evalua
-				if(getDifference(W.lastElement(),W.get(W.size()-2))>T)
+				if(function.getDifference(W.lastElement(),W.get(W.size()-2))>T)
 						evaluateInterrupted(nodeA, W.lastElement());
 
 				//Keep the last node in nodeB
@@ -469,17 +354,6 @@ public class Algorithm {
 		return e;
 	}
 	
-	/**
-	 * Get the time difference between current node and last node (nodeA-nodeB)
-	 * @param nodeA
-	 * @param nodeB
-	 * @return difference between nodeA and nodeB in milliseconds
-	 */
-	public double getDifference(Node nodeA, Node nodeB)
-	{
-		double difference = nodeA.getTime().getTime() - nodeB.getTime().getTime();
-		return difference;
-	}
 	
 	/**
 	 * Method for reading the data from the file	 
